@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900");
+
+.noscroll {
+  overflow: hidden;
+}
+
+.event {
+  overflow-y: auto;
+  height: 80%;
+}
+
+.column.left,
+.column.right {
+  background: #fcfcfc;
+  display: block;
+  position: relative;
+  font-size: 1rem;
+  width: 100%;
+}
+.column.left {
+  height: 25vh;
+}
+.column.right {
+  height: 50vh;
+}
+
+@media (min-width: 641px) {
+  .event {
+    height: 90%;
+  }
+  .column.left,
+  .column.right {
+    display: inline-block;
+    width: 50%;
+    height: 90%;
+  }
+  .column.left {
+    position: fixed;
+  }
+  .column.right {
+    margin-left: 50%;
+  }
+}
+
+.content {
+  display: block;
+  height: 100%;
+  max-width: 40rem;
+  margin: 0;
+  padding: 1rem;
+}
+@media (min-width: 641px) {
+  .content {
+    margin: 0 1rem;
+  }
+  .content p,
+  .content ol {
+    font-size: 2rem;
+  }
+}
+
+.content h1,
+.content h2,
+.content p,
+.content ol {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 5vw;
+  font-weight: 500;
+  line-height: 1.5em;
+  color: #0d013d;
+}
+.content h1 {
+  font-family: "Play";
+  font-size: 9vw;
+  font-weight: 700;
+  line-height: 1em;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.content ol {
+  padding-left: 1rem;
+}
+@media (min-width: 641px) {
+  .content h1,
+  .content h2,
+  .content p,
+  .content ol {
+    font-size: 2rem;
+  }
+  .content h1 {
+    font-size: 54px;
+  }
+}
+.content h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.155em;
+  margin-top: 1rem;
+}
+
+.button-group {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+.button {
+  display: inline-block;
+  padding: 1em 2em;
+  min-width: 8em;
+  text-align: center;
+  font-weight: 900;
+  text-decoration: none;
+  border-radius: 1.5em;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  outline: none;
+  border: none;
+  background: #f0f0f0;
+  color: #2b2b2b;
+  transition: all 0.2s ease-out 0.05s;
+}
+.button ~ .button {
+  margin-left: 0.5em;
+}
+.button:hover {
+  background: #e5e5e5;
+}
+.button.primary {
+  background: #e50055;
+  color: #fff;
+}
+.button.primary:hover {
+  background: #9d00e5;
+}

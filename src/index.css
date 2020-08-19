@@ -19,6 +19,7 @@ body {
   perspective: 1000px;
   perspective-origin: right 50vh;
   background-color: #321456 !important;
+  background:linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
 }
 
 .fonts-loaded {

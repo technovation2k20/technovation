@@ -1,80 +1,46 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import $ from "jquery";
+import { Grid } from "@material-ui/core";
 
-import PriceTag from "../PriceTag/PriceTag";
+import "./Card.css";
 
 const Card = (props) => {
-  useEffect(() => {
-    $(function () {
-      $(".material-card > .mc-btn-action").click(function () {
-        var card = $(this).parent(".material-card");
-        var icon = $(this).children("i");
-        icon.addClass("fa-spin-fast");
-
-        if (card.hasClass("mc-active")) {
-          $(".price-tag").css({ display: "block" });
-
-          card.removeClass("mc-active");
-
-          window.setTimeout(function () {
-            icon
-              .removeClass("fa-arrow-left")
-              .removeClass("fa-spin-fast")
-              .addClass("fa-bars");
-          }, 800);
-        } else {
-          $(".price-tag").css({ display: "none" });
-
-          card.addClass("mc-active");
-
-          window.setTimeout(function () {
-            icon
-              .removeClass("fa-bars")
-              .removeClass("fa-spin-fast")
-              .addClass("fa-arrow-left");
-          }, 800);
-        }
-      });
-    });
-  }, []);
+  const [animate, setAnimate] = useState(false);
 
   return (
-    <div className="col-md-4 col-sm-6 col-xs-12">
-      <PriceTag price={props.price} />
-      <article className={"material-card " + props.color}>
-        <h2>
-          <span>{props.name}</span>
-          <strong>
-            <i className="fa fa-fw fa-star"></i>
-            {props.altName}
-          </strong>
-        </h2>
-        <div className="mc-content">
-          <div className="img-container">
-            <img
-              alt={props.imgDesc}
-              className="img-responsive"
-              src={props.imgSrc}
-              height="718px"
-              width="718px"
-            />
+    <Grid item xs={12} sm={6} md={4}>
+      <div
+        id="product-card"
+        className={animate ? "animate" : ""}
+        onMouseEnter={() => setAnimate(true)}
+        onMouseLeave={() => setAnimate(false)}
+      >
+        <div className="shadow"></div>
+        <div
+          style={{
+            height: "300px",
+            backgroundImage: `url(${props.imgSrc})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        ></div>
+        <div className="image_overlay"></div>
+        <Link to={`/event/${props.event}`} style={{ textDecoration: "none" }}>
+          <div id="view_details">View details</div>
+        </Link>
+        <div className="stats">
+          <div className="stats-container">
+            <span className="product_name">{props.name}</span>
+            <p>{props.altName}</p>
+            <div className="product-options">
+              <strong>ABOUT</strong>
+              <span>{props.desc}</span>
+            </div>
           </div>
-          <div className="mc-description">{props.desc}</div>
         </div>
-        <a className="mc-btn-action">
-          <i className="fa fa-bars"></i>
-        </a>
-        <div className="mc-footer">
-          <Link to={`/events/${props.event}`}>
-            <i>Detail</i>
-          </Link>
-          <a href="/">
-            <i className="fa fa-cart-plus"></i>
-          </a>
-        </div>
-      </article>
-    </div>
+      </div>
+    </Grid>
   );
 };
 

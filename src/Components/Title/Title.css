@@ -1,11 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Tangerine&display=swap");
 
-.wrapper,
+#root > .wrapper,
 .title-content {
   margin: auto;
 }
-.wrapper {
+#root > .wrapper {
   height: 30vw;
   width: 90vw;
   margin-top: 10vw;
@@ -44,28 +43,16 @@
   font-family: "Tangerine", cursive;
 }
 
-.wrapper.expand {
-  /* margin-top: 0;
-  width: 100vw;
-  height: 6vw;
-  display: none; */
+#root > .wrapper.expand {
   mix-blend-mode: normal;
   opacity: 0;
 }
 
 .title-content.expand {
-  /* position: fixed;
-  width: 100vw;
-  height: 5vw;
-  top: 0;
-  left: 0;
-  margin-top: 0;
-  font-size: 4vw;
-  display: none; */
   opacity: 0;
 }
 
-.expand .fromHome {
+#root > .expand .fromHome {
   font-size: 2.4vw;
   right: 32%;
   display: none;
@@ -2908,14 +2895,11 @@
 }
 
 @media (min-width: 961px) {
-  .wrapper {
+  #root > .wrapper {
     height: 288px;
     width: 864px;
     margin-top: 96px;
   }
-  /* .wrapper.expand {
-    margin-top: 0px;
-  } */
   .title-content {
     height: 20vw;
     width: 80vw;
@@ -2926,23 +2910,17 @@
     margin-top: -240px;
     font-size: 96px;
   }
-  /* .title-content.expand {
-    margin-top: 0px;
-  } */
   .fromHome {
     font-size: 64.8px;
   }
 }
 
 @media (min-width: 1281px) {
-  .wrapper {
+  #root > .wrapper {
     height: 384px;
     width: 1152px;
     margin-top: 128px;
   }
-  /* .wrapper.expand {
-    margin-top: 0px;
-  } */
   .title-content {
     height: 256px;
     width: 1024px;

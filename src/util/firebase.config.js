@@ -1,4 +1,5 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 const config = {
   apiKey: "AIzaSyCRA-fNYF6rI8YyVJU5yQj7QXlNecZiiQg",
@@ -13,27 +14,15 @@ const config = {
 
 firebase.initializeApp(config);
 
-// export const uiConfig = {
-//   signInFlow: "popup",
-//   signInSuccessUrl: "/",
-//   signInOptions: [
-//     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-//     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-//   ],
-// };
-
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
+facebookProvider.addScope("email");
 
 export const signin = (email, password) => {
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then((res) => {
-      console.log("Logged In", res.user);
-      return res.user;
-    })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -46,12 +35,10 @@ export const signup = (email, password) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
-      console.log("User Created");
       return signin(email, password);
     })
-    .then((user) => {
-      console.log(user);
-      return user;
+    .then(() => {
+      sendEmailVerification();
     })
     .catch((error) => {
       var errorCode = error.code;
@@ -60,14 +47,28 @@ export const signup = (email, password) => {
     });
 };
 
-export const signinWithGoogle = () => {
+export const sendEmailVerification = () => {
+  firebase
+    .auth()
+    .currentUser.sendEmailVerification()
+    .then(function () {
+      alert("Email Verification Sent!");
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
+};
+
+export const signinWithGoogle = (cb) => {
   firebase
     .auth()
     .signInWithPopup(googleProvider)
     .then((res) => {
-      console.log("Logged In");
       return res.user;
     })
+    .then(() => cb())
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -75,14 +76,30 @@ export const signinWithGoogle = () => {
     });
 };
 
-export const signinWithFacebook = () => {
+export const signinWithFacebook = (cb) => {
   firebase
     .auth()
     .signInWithPopup(facebookProvider)
     .then((res) => {
-      console.log("Logged In");
       return res.user;
     })
+    .then(() => cb())
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
+};
+
+export const updateProfile = (name, photo) => {
+  let profile = { displayName: name };
+
+  if (photo) {
+    profile = { displayName: name, photoURL: photo };
+  }
+  firebase
+    .auth()
+    .currentUser.updateProfile(profile)
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -92,6 +109,7 @@ export const signinWithFacebook = () => {
 
 export const logout = () => firebase.auth().signOut();
 
-export const database = firebase.database();
+export const onAuthStateChanged = (cb) =>
+  firebase.auth().onAuthStateChanged(cb);
 
 export default firebase;
