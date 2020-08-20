@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 
 import { useStyles } from "../../util/styles";
+import { AuthContext } from "../../context/auth-context";
 import "./Nav.css";
 
 const NewNav = (props) => {
   const classes = useStyles();
+  const auth = useContext(AuthContext);
+
   return ReactDOM.createPortal(
     <>
       <Close
@@ -40,9 +43,11 @@ const NewNav = (props) => {
         <Button className={classes.nav} onClick={props.handleDrawerClose}>
           <Link to={"/about"}>About</Link>
         </Button>
-        <Button className={classes.nav} onClick={props.handleDrawerClose}>
-          <Link to={"/your-events"}>Your Events</Link>
-        </Button>
+        {auth.user && (
+          <Button className={classes.nav} onClick={props.handleDrawerClose}>
+            <Link to={"/your-events"}>Your Events</Link>
+          </Button>
+        )}
       </div>
     </>,
     document.getElementById("navigation")

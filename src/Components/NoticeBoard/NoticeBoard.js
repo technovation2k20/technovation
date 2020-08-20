@@ -12,14 +12,14 @@ const NoticeBoard = (props) => {
   //   "events",
   //   "important",
   // ];
-  // const colors = [
-  //   "#66d7ee",
-  //   "#66a1ee",
-  //   "#7166ee",
-  //   "#a866ee",
-  //   "#ee66aa",
-  //   "#ee6d66",
-  // ];
+  const colors = [
+    "#66d7ee",
+    "#66a1ee",
+    "#7166ee",
+    "#a866ee",
+    "#ee66aa",
+    "#ee6d66",
+  ];
 
   // const navItems = categories.map((category, index) => ({
   //   category,
@@ -65,11 +65,11 @@ const NoticeBoard = (props) => {
 
       <section className={classes.board__news}>
         {data && data.length ? (
-          data.slice(0, 5).map(({ color, date, title }, i) => (
+          data.slice(0, 5).map(({ date, title }, i) => (
             <a
               key={i}
               className={classes.newsItem}
-              style={{ borderLeft: `4px solid ${color}` }}
+              style={{ borderLeft: `4px solid ${colors[i % 6]}` }}
             >
               <p className={classes.date}>{date.toDateString()}</p>
               <p className={classes.title}>{title}</p>

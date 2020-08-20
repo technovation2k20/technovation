@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import $ from "jquery";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Button, Tabs, Tab } from "@material-ui/core";
+import {
+  TextField,
+  Button,
+  Tabs,
+  Tab,
+  Checkbox,
+  Typography,
+} from "@material-ui/core";
 import GoogleButton from "react-google-button";
 import "animate.css";
 
@@ -160,6 +167,11 @@ const Form = (props) => {
         onChange={(event) => setPassword(event.target.value)}
       />
       <br />
+      <Checkbox color="primary" style={{ minWidth: "0" }} />
+      <Typography variant="h6" style={{ display: "contents" }}>
+        I have read the <Link to="/tnc">Terms&Conditions</Link> and{" "}
+        <Link to="/privacy-policy">Privacy Policy</Link>
+      </Typography>
       <Button
         className={classes.button + " " + classes.signIn}
         variant="contained"
@@ -171,7 +183,8 @@ const Form = (props) => {
       </Button>
       <GoogleButton
         className={classes.button}
-        label={loginMode ? "SIGN IN WITH GOOGLE" : "SIGN UP WITH GOOGLE"}
+        label="SIGN IN WITH GOOGLE"
+        type="light"
         onClick={() => {
           signinWithGoogle(() => history.push("/"));
         }}

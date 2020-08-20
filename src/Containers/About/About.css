@@ -1,0 +1,238 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: #777;
+  font-size: 0.9375rem;
+  height: 85vh;
+  margin: 0;
+  line-height: 1.6;
+  align-items: center;
+  justify-content: space-evenly;
+  text-rendering: optimizeLegibility;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.blog-card {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.card-link {
+  position: relative;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-image {
+  transition: opacity 0.3s ease;
+  display: block;
+  width: 100%;
+  object-fit: contain;
+  background-color: #f2f2f2;
+}
+
+.article-details {
+  padding: 1.5rem;
+}
+
+.post-category {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.0625rem;
+  margin: 0 0 0.75rem 0;
+  padding: 0 0 0.25rem 0;
+  border-bottom: 0.125rem solid #ebebeb;
+}
+
+.post-title {
+  transition: color 0.3s ease;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  color: #121212;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.post-author {
+  font-size: 0.875rem;
+  line-height: 1;
+  margin: 1.125rem 0 0 0;
+  padding: 1.125rem 0 0 0;
+  border-top: 0.0625rem solid #ebebeb;
+  display: block;
+}
+
+@media (max-width: 40rem) {
+  #container {
+    width: 100%;
+    height: 80vh;
+    display: block;
+  }
+
+  .blog-card {
+    flex-wrap: wrap;
+  }
+}
+@supports (display: grid) {
+  body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.625rem;
+    grid-template-areas: ". main main ." ". main main .";
+  }
+
+  #container {
+    grid-area: main;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .post-image {
+    height: 100%;
+  }
+
+  .blog-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+  }
+
+  @media (max-width: 40rem) {
+    .blog-card {
+      grid-template-columns: auto;
+      grid-template-rows: 12rem 1fr;
+    }
+  }
+}
+
+.footer {
+  background-color: #ffffff;
+  line-height: 20px;
+}
+
+.footer .social-area {
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+}
+.footer h5 {
+  padding-bottom: 15px;
+  font-size: 24px;
+  text-align: center;
+}
+.footer .social-area > a:not(.btn) {
+  color: #9a9a9a;
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px 5px;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 20px;
+  text-align: center;
+}
+.footer .social-area > a:not(.btn):hover,
+.footer .social-area > a:not(.btn):focus {
+  color: #777777;
+}
+
+.footer-transparent {
+  background-color: rgba(30, 30, 30, 0.97);
+  color: #dddddd;
+}
+
+.footer-transparent {
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+}
+.footer-transparent .container {
+  z-index: 2;
+  position: relative;
+}
+
+.footer-transparent::after {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(17, 17, 17, 0.8);
+  display: block;
+  content: "";
+  z-index: 1;
+}
+
+.footer-big {
+  padding-top: 30px;
+}
+
+.footer-big .social-area > * {
+  margin: 0 15px;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 600px) {
+  .container {
+    width: 95vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 740px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 880px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1050px;
+  }
+}
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.btn-social {
+  opacity: 0.85;
+  padding: 8px 9px;
+  text-decoration: none;
+  color: #dddddd;
+  vertical-align: middle;
+  font-size: 18px;
+  display: inline-block;
+  font-size: 20px;
+  position: relative;
+  top: -2px;
+  width: 24px;
+}
+.btn-social.btn-round {
+  padding: 9px 10px;
+}
+.btn-social.btn-simple {
+  padding: 9px 5px;
+  font-size: 16px;
+}
