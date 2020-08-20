@@ -181,7 +181,7 @@
   margin: 0 15px;
 }
 
-.container {
+.footer-transparent .container {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -189,25 +189,25 @@
 }
 
 @media (min-width: 600px) {
-  .container {
+  .footer-transparent .container {
     width: 95vw;
   }
 }
 
 @media (min-width: 768px) {
-  .container {
+  .footer-transparent .container {
     width: 740px;
   }
 }
 
 @media (min-width: 992px) {
-  .container {
+  .footer-transparent .container {
     width: 880px;
   }
 }
 
 @media (min-width: 1200px) {
-  .container {
+  .footer-transparent .container {
     width: 1050px;
   }
 }

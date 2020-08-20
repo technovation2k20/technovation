@@ -16,17 +16,19 @@ const Event = (props) => {
 
   const [eventData, setEventData] = useState();
   const [isInCart, setIsInCart] = useState();
+  const [isRegistered, setIsRegistered] = useState();
 
   useEffect(() => {
     if (events.events) {
       setEventData(events.events.find((e) => e.eventId === eventId));
     }
-    if (cart.cart) {
-      setIsInCart(
-        cart.cart ? cart.cart.find((e) => e.eventId === eventId) : false
-      );
-    }
-  }, [eventId, cart.cart, events.events]);
+    setIsInCart(
+      cart.cart ? cart.cart.find((e) => e.eventId === eventId) : false
+    );
+    setIsRegistered(
+      cart.myEvents ? cart.myEvents.find((e) => e.eventId === eventId) : false
+    );
+  }, [eventId, cart.cart, cart.myEvents, events.events]);
 
   return eventData ? (
     <>
@@ -40,8 +42,7 @@ const Event = (props) => {
             backgroundRepeat: "no-repeat",
             backgroundColor: "#2FA3F8",
           }}
-        >
-        </section>
+        ></section>
 
         <section className="column right">
           <article className="content">
@@ -108,19 +109,29 @@ const Event = (props) => {
 
       <div className="button-group">
         {auth.user ? (
-          !isInCart ? (
-            <button
-              className="button primary"
-              onClick={() => cart.addItem(auth.user, eventData)}
-            >
-              Add To Cart
-            </button>
+          !isRegistered ? (
+            !isInCart ? (
+              <button
+                className="button primary"
+                onClick={() => cart.addItem(auth.user, eventData)}
+              >
+                Add To Cart
+              </button>
+            ) : (
+              <div className="button" style={{ boxShadow: "none" }}>
+                Added To Cart
+              </div>
+            )
           ) : (
             <div className="button" style={{ boxShadow: "none" }}>
-              Added To Cart
+              Already Registered
             </div>
           )
-        ) : null}
+        ) : (
+          <div className="button" style={{ boxShadow: "none" }}>
+            Sign in to add to Cart
+          </div>
+        )}
       </div>
     </>
   ) : null;

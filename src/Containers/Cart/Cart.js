@@ -5,7 +5,6 @@ import { Button } from "@material-ui/core";
 import "./Cart.css";
 import { CartContext } from "../../context/cart-context";
 import { AuthContext } from "../../context/auth-context";
-import axios from "../../util/axios";
 
 const Cart = (props) => {
   const cart = useContext(CartContext);
@@ -13,16 +12,8 @@ const Cart = (props) => {
   const history = useHistory();
 
   const onSubmitHandler = () => {
-    axios
-      .post(`/userData/${auth.user.uid}/events.json`, cart.cart)
-      .then((res) => {
-        cart.initializeCart(null);
-        return axios.delete(`/userData/${auth.user.uid}/cart.json`);
-      })
-      .then(() => {
-        history.push("/your-events");
-      })
-      .catch((err) => console.log(err));
+    cart.updateMyEvents(auth.user);
+    history.push("/your-events");
   };
 
   return (

@@ -1,23 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
-import axios from "../../util/axios";
-import { AuthContext } from "../../context/auth-context";
+import { CartContext } from "../../context/cart-context";
 
 import "../Cart/Cart.css";
 
 const YourEvents = (props) => {
-  const auth = useContext(AuthContext);
-  const [data, setData] = useState(null);
+  const cart = useContext(CartContext);
 
-  useEffect(() => {
-    async function loadData() {
-      const res = await axios.get(`/userData/${auth.user.uid}/events.json`);
-      for (let i in res.data) {
-        setData(res.data[i]);
-      }
-    }
-    loadData();
-  }, [auth.user.uid]);
+  const data = cart.myEvents;
 
   return (
     <>
