@@ -79,7 +79,7 @@ const CartContextProvider = (props) => {
       axios
         .put(myEventsURL, updatedEvent)
         .then(() => {
-          setMyEvents(updateEvents);
+          setMyEvents(updatedEvent);
           return axios.delete(`/userData/${user.uid}/cart.json`);
         })
         .then(() => {

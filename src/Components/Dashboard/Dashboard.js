@@ -63,6 +63,10 @@ const Dashboard = (props) => {
                   </p>
                 </div>
                 <div className={classes.data}>
+                  <h4>UID</h4>
+                  <p>{auth.user ? auth.user.uid : "000000000"}</p>
+                </div>
+                <div className={classes.data}>
                   <h4>Year</h4>
                   <p>
                     {auth.userData && auth.userData.year
