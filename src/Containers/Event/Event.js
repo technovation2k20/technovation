@@ -73,9 +73,7 @@ const Event = (props) => {
                 if (typeof r === "object") {
                   return (
                     <ul key={i}>
-                      {r.map((rule, j) => (
-                        <li key={j}>{rule}</li>
-                      ))}
+                      {r && r.map((rule, j) => <li key={j}>{rule}</li>)}
                     </ul>
                   );
                 }
@@ -124,7 +122,17 @@ const Event = (props) => {
             )
           ) : (
             <div className="button" style={{ boxShadow: "none" }}>
-              Already Registered
+              {eventData.link ? (
+                <a
+                  href={eventData.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {eventData.link}
+                </a>
+              ) : (
+                "Already Registered"
+              )}
             </div>
           )
         ) : (

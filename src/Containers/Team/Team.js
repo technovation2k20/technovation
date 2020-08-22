@@ -47,7 +47,7 @@ const Team = () => {
                         color: "#333333",
                       }}
                     >
-                      {p.name}
+                      {p.phone}
                     </Typography>
                     <Typography
                       variant="body2"
@@ -72,6 +72,13 @@ const Team = () => {
                     </Typography>
                   </div>
                 </div>
+                <Typography
+                  variant="body1"
+                  align="center"
+                  style={{ paddingTop: "1rem" }}
+                >
+                  {p.name}
+                </Typography>
               </Grid>
             ))}
         </Grid>

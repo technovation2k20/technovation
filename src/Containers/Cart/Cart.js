@@ -23,7 +23,7 @@ const Cart = (props) => {
         {cart.cart && cart.cart.length ? (
           <>
             <div className="column-labels">
-              <label className="product-image">Image</label>
+              {/* <label className="product-image">Image</label> */}
               <label className="product-details">Product</label>
               {/* <label className="product-price">Price</label> */}
               <label className="product-removal">Remove</label>
@@ -31,9 +31,9 @@ const Cart = (props) => {
 
             {cart.cart.map((ci, i) => (
               <div className="product" key={i}>
-                <div className="product-image">
+                {/* <div className="product-image">
                   <img src={ci.bannerImg} alt={ci.altName} width="100px" />
-                </div>
+                </div> */}
                 <div className="product-details">
                   <div className="product-title">{ci.title}</div>
                   <p className="product-description">{ci.altName}</p>

@@ -9,6 +9,7 @@ const Home = lazy(() => import("./Containers/Home/Home"));
 const Events = lazy(() => import("./Containers/Events/Events"));
 const Event = lazy(() => import("./Containers/Event/Event"));
 const Team = lazy(() => import("./Containers/Team/Team"));
+const Schedule = lazy(() => import("./Containers/Schedule/Schedule"));
 const Layout = lazy(() => import("./Containers/Layout/Layout"));
 const Login = lazy(() => import("./Containers/Login/Login"));
 const Cart = lazy(() => import("./Containers/Cart/Cart"));
@@ -46,6 +47,11 @@ const App = (props) => {
       <Route path="/team">
         <Layout>
           <Team />
+        </Layout>
+      </Route>
+      <Route path="/schedule">
+        <Layout>
+          <Schedule />
         </Layout>
       </Route>
       <Route path="/profile">
@@ -103,6 +109,11 @@ const App = (props) => {
       <Route path="/team">
         <Layout>
           <Team />
+        </Layout>
+      </Route>
+      <Route path="/schedule">
+        <Layout>
+          <Schedule />
         </Layout>
       </Route>
       <Route path="/about">

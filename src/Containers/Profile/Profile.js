@@ -194,7 +194,9 @@ const Form = (props) => {
           data
         );
       } else {
-        axios.post(`/userData/${auth.user.uid}/profileData.json`, data);
+        axios
+          .post(`/userData/${auth.user.uid}/profileData.json`, data)
+          .then((res) => setEditMode(res.data.name));
       }
       updateProfile(name);
       auth.initData({ ...data, profileId: editMode });

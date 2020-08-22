@@ -80,6 +80,7 @@
 
 .content ol {
   padding-left: 1rem;
+  overflow-wrap: anywhere;
 }
 @media (min-width: 641px) {
   .content h1,

@@ -16,15 +16,15 @@ const YourEvents = (props) => {
         {data && data.length ? (
           <>
             <div className="column-labels">
-              <label className="product-image">Image</label>
+              {/* <label className="product-image">Image</label> */}
               <label className="product-details">Product</label>
             </div>
 
             {data.map((ci, i) => (
               <div className="product" key={i}>
-                <div className="product-image">
+                {/* <div className="product-image">
                   <img src={ci.bannerImg} alt={ci.altName} width="100px" />
-                </div>
+                </div> */}
                 <div className="product-details">
                   <div className="product-title">{ci.title}</div>
                   <p className="product-description">{ci.altName}</p>
