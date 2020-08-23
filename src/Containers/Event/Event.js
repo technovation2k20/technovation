@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-// import { Close } from "@material-ui/icons";
-// import $ from "jquery";
 
 import "./Event.css";
+import Spinner from "../../Components/Spinner/Spinner";
+
 import { AuthContext } from "../../context/auth-context";
 import { CartContext } from "../../context/cart-context";
 import { EventContext } from "../../context/event-context";
@@ -142,7 +142,9 @@ const Event = (props) => {
         )}
       </div>
     </>
-  ) : null;
+  ) : (
+    <Spinner />
+  );
 };
 
 export default Event;

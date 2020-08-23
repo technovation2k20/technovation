@@ -4,6 +4,7 @@ import FontFaceObserver from "fontfaceobserver/fontfaceobserver";
 import { Create } from "@material-ui/icons";
 import $ from "jquery";
 
+import { version } from "../../../package.json";
 import { onAuthStateChanged } from "../../util/firebase.config";
 import { AuthContext } from "../../context/auth-context";
 import { CartContext } from "../../context/cart-context";
@@ -102,7 +103,7 @@ const Layout = (props) => {
   }, [auth, history]);
 
   useEffect(() => {
-    events.initializeEvents();
+    if (!events.events) events.initializeEvents();
   }, [events]);
 
   return (
@@ -120,6 +121,9 @@ const Layout = (props) => {
             onClick={toggleForm}
           />
           <div id="main-content">{props.children}</div>
+          <div style={{ position: "fixed", bottom: "0", right: "0" }}>
+            {version}
+          </div>
         </div>
       </main>
     </>

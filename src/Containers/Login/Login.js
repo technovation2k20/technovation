@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import GoogleButton from "react-google-button";
-import "animate.css";
 
 import {
   signin,

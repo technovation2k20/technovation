@@ -4,14 +4,6 @@ import axios from "../../util/axios";
 import classes from "./NoticeBoard.module.css";
 
 const NoticeBoard = (props) => {
-  // const categories = [
-  //   "all",
-  //   "news",
-  //   "updates",
-  //   "maintenance",
-  //   "events",
-  //   "important",
-  // ];
   const colors = [
     "#66d7ee",
     "#66a1ee",
@@ -21,43 +13,22 @@ const NoticeBoard = (props) => {
     "#ee6d66",
   ];
 
-  // const navItems = categories.map((category, index) => ({
-  //   category,
-  //   color: colors[index],
-  // }));
-
-  // const latestDate = new Date();
-  // const fillerTitle =
-  //   "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, saepe";
-
-  // const limit = 5;
-
-  // navItems.slice(1).forEach(({ category, color }) => {
-  //   for (let i = 0; i < limit; i += 1) {
-  //     const date = new Date(
-  //       latestDate - 1000 * 60 * 60 * 24 * Math.ceil(Math.random() * 100)
-  //     );
-  //     data.push({
-  //       category,
-  //       color,
-  //       date,
-  //       title: fillerTitle,
-  //     });
-  //   }
-  // });
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
     async function loadData() {
       const res = await axios.get("/notices.json");
-      setData(res.data);
+      if(res.data) {
+        setData(res.data);
+      } else {
+        setData([]);
+      }
     }
-    loadData();
+    if (!data.length) loadData();
     return () => {
       setData(null);
     };
-  });
+  }, [data.length]);
 
   return (
     <div className={classes.board}>
@@ -66,14 +37,14 @@ const NoticeBoard = (props) => {
       <section className={classes.board__news}>
         {data && data.length ? (
           data.slice(0, 5).map(({ date, title }, i) => (
-            <a
+            <div
               key={i}
               className={classes.newsItem}
               style={{ borderLeft: `4px solid ${colors[i % 6]}` }}
             >
-              <p className={classes.date}>{date.toDateString()}</p>
+              <p className={classes.date}>{date.toLocaleString()}</p>
               <p className={classes.title}>{title}</p>
-            </a>
+            </div>
           ))
         ) : (
           <p>No News Yet</p>

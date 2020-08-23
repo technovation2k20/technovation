@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Grid } from "@material-ui/core";
 
 import Card from "../../Components/Card/Card";
+import Spinner from '../../Components/Spinner/Spinner';
 import { EventContext } from "../../context/event-context";
 
 const Event = (props) => {
@@ -10,7 +11,7 @@ const Event = (props) => {
   const data = events.events;
 
   return (
-    data && (
+    data ? (
       <Grid
         container
         spacing={6}
@@ -123,7 +124,7 @@ const Event = (props) => {
             )
         )}
       </Grid>
-    )
+    ) : (<Spinner />)
   );
 };
 

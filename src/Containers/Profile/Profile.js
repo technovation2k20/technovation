@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import $ from "jquery";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button, MenuItem } from "@material-ui/core";
-import "animate.css";
 
 import "../Login/Login.css";
 import axios from "../../util/axios";
