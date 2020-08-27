@@ -83,7 +83,6 @@ const Layout = (props) => {
       axios
         .get(`/user/${auth.user.uid}/`)
         .then((res) => {
-          console.log(res.data);
           if (res.data) {
             auth.initData(res.data);
           } else {

@@ -8,7 +8,7 @@ const Schedule = () => {
   useEffect(() => {
     async function loadData() {
       const res = await axios.get("schedule");
-      setData(res.data);
+      if (res.data) setData(res.data[0].src);
     }
     loadData();
   }, []);
@@ -16,7 +16,7 @@ const Schedule = () => {
   return data ? (
     <div
       style={{
-        backgroundImage: `url(${data.src})`,
+        backgroundImage: `url(${data})`,
         height: "83vh",
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",

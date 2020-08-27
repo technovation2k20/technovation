@@ -23,7 +23,7 @@ const YourEvents = (props) => {
             {data.map((ci, i) => (
               <div className="product" key={i}>
                 {/* <div className="product-image">
-                  <img src={ci.bannerImg} alt={ci.altName} width="100px" />
+                  <img src={ci.imageUrl} alt={ci.altName} width="100px" />
                 </div> */}
                 <div className="product-details">
                   <div className="product-title">{ci.eventId.title}</div>

@@ -11,7 +11,7 @@ const Team = () => {
 
   useEffect(() => {
     async function loadData() {
-      const res = await axios.get("team");
+      const res = await axios.get("teams");
       setData(res.data);
     }
     loadData();

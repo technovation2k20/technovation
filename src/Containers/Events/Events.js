@@ -53,7 +53,7 @@ const Event = (props) => {
                 key={i}
                 name={e.title}
                 altName={e.altName}
-                imgSrc={e.bannerImg}
+                imgSrc={e.imageUrl}
                 imgDesc={e.altName}
                 desc={e.description}
                 event={e.eventId}
@@ -74,7 +74,7 @@ const Event = (props) => {
                 key={i}
                 name={e.title}
                 altName={e.altName}
-                imgSrc={e.bannerImg}
+                imgSrc={e.imageUrl}
                 imgDesc={e.altName}
                 desc={e.description}
                 event={e.eventId}
@@ -95,7 +95,7 @@ const Event = (props) => {
                 key={i}
                 name={e.title}
                 altName={e.altName}
-                imgSrc={e.bannerImg}
+                imgSrc={e.imageUrl}
                 imgDesc={e.altName}
                 desc={e.description}
                 event={e.eventId}
@@ -116,7 +116,7 @@ const Event = (props) => {
                 key={i}
                 name={e.title}
                 altName={e.altName}
-                imgSrc={e.bannerImg}
+                imgSrc={e.imageUrl}
                 imgDesc={e.altName}
                 desc={e.description}
                 event={e.eventId}
