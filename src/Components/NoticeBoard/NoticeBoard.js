@@ -17,7 +17,7 @@ const NoticeBoard = (props) => {
 
   useEffect(() => {
     async function loadData() {
-      const res = await axios.get("/notices.json");
+      const res = await axios.get("notices");
       if(res.data) {
         setData(res.data);
       } else {

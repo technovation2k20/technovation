@@ -4,15 +4,13 @@ import { Button } from "@material-ui/core";
 
 import "./Cart.css";
 import { CartContext } from "../../context/cart-context";
-import { AuthContext } from "../../context/auth-context";
 
 const Cart = (props) => {
   const cart = useContext(CartContext);
-  const auth = useContext(AuthContext);
   const history = useHistory();
 
   const onSubmitHandler = () => {
-    cart.updateMyEvents(auth.user);
+    cart.updatemyOrders();
     history.push("/your-events");
   };
 
@@ -35,8 +33,8 @@ const Cart = (props) => {
                   <img src={ci.bannerImg} alt={ci.altName} width="100px" />
                 </div> */}
                 <div className="product-details">
-                  <div className="product-title">{ci.title}</div>
-                  <p className="product-description">{ci.altName}</p>
+                  <div className="product-title">{ci.eventId.title}</div>
+                  <p className="product-description">{ci.eventId.altName}</p>
                 </div>
                 {/* <div className="product-price">{ci.price}</div> */}
                 <div className="product-removal">

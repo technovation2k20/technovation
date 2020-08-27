@@ -4,114 +4,92 @@ import axios from "../util/axios";
 
 export const CartContext = createContext({
   cart: null,
-  myEvents: null,
+  myOrders: null,
   initializeCart: () => {},
   addItem: () => {},
   removeItem: () => {},
-  updateMyEvents: () => {},
+  updatemyOrders: () => {},
 });
 
 const CartContextProvider = (props) => {
   const [cart, setCart] = useState(null);
-  const [myEvents, setMyEvents] = useState(null);
+  const [myOrders, setMyOrders] = useState(null);
   const [cartURL, setCartURL] = useState(null);
-  const [myEventsURL, setMyEventsURL] = useState(null);
+  const [myOrdersURL, setMyOrdersURL] = useState(null);
 
   const initializeCartHandler = (user) => {
     if (user) {
+      setCartURL(`cart/${user.uid}`);
+      setMyOrdersURL(`checkout/${user.uid}`);
       axios
-        .get(`/userData/${user.uid}/cart.json`)
+        .get(cartURL)
         .then((res) => {
-          if (!res.data) {
-            setCart([]);
+          if (res.data) {
+            setCart(res.data);
           } else {
-            for (let i in res.data) {
-              setCart(res.data[i]);
-              setCartURL(`/userData/${user.uid}/cart/${i}.json`);
-            }
+            setCart([]);
           }
         })
         .catch((err) => console.log(err));
+      const orders = [];
       axios
-        .get(`/userData/${user.uid}/events.json`)
+        .get(`orders/${user.uid}`)
         .then((res) => {
-          if (!res.data) {
-            setMyEvents([]);
-          } else {
+          if (res.data) {
             for (let i in res.data) {
-              setMyEvents(res.data[i]);
-              setMyEventsURL(`/userData/${user.uid}/events/${i}.json`);
+              const events = res.data[i].events.items;
+              for (let j in events) {
+                orders.push({ eventId: events[j].eventId });
+              }
             }
+            setMyOrders(orders);
+          } else {
+            setMyOrders([]);
           }
         })
         .catch((err) => console.log(err));
     } else {
       setCart([]);
-      setMyEvents([]);
+      setMyOrders([]);
     }
   };
 
-  const addItemHandler = (user, event) => {
+  const addItemHandler = (event) => {
     const updatedCart = [...cart];
-    updatedCart.push(event);
+    updatedCart.push({ eventId: event });
     setCart(updatedCart);
-    if (updatedCart.length === 1) {
-      axios
-        .post(`/userData/${user.uid}/cart.json`, updatedCart)
-        .then((res) => {
-          setCartURL(`/userData/${user.uid}/cart/${res.data.name}.json`);
-        })
-        .catch((err) => console.log(err));
-    } else {
-      axios.put(cartURL, updatedCart).catch((err) => console.log(err));
-    }
+    axios.post(cartURL, updatedCart).catch((err) => console.log(err));
   };
 
   const removeItemHandler = (event) => {
-    const updatedCart = cart.filter((e) => e.title !== event.title);
+    const updatedCart = cart.filter(
+      (e) => e.eventId.title !== event.eventId.title
+    );
     setCart(updatedCart);
-    axios.put(cartURL, updatedCart).catch((err) => console.log(err));
+    axios.post(cartURL, updatedCart).catch((err) => console.log(err));
   };
 
-  const updateEvents = (user) => {
-    const updatedEvent = [...myEvents, ...cart];
-    if (myEvents && myEvents.length > 0) {
-      axios
-        .put(myEventsURL, updatedEvent)
-        .then(() => {
-          setMyEvents(updatedEvent);
-          return axios.delete(`/userData/${user.uid}/cart.json`);
-        })
-        .then(() => {
-          setCart([]);
-          setCartURL(null);
-        })
-        .catch((err) => console.log(err));
-    } else {
-      axios
-        .post(`/userData/${user.uid}/events.json`, updatedEvent)
-        .then((res) => {
-          setMyEvents(updatedEvent);
-          setMyEventsURL(`/userData/${user.uid}/events/${res.data.name}.json`);
-        })
-        .then((res) => {
-          axios.delete(`/userData/${user.uid}/cart.json`);
-          setCart([]);
-          setCartURL(null);
-        })
-        .catch((err) => console.log(err));
-    }
+  const updateEvents = () => {
+    const updatedEvent = [...myOrders, ...cart];
+    setMyOrders(updatedEvent);
+    setCart([]);
+    axios
+      .get(myOrdersURL)
+      .then(() => {
+        setCartURL(null);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     <CartContext.Provider
       value={{
         cart: cart,
-        myEvents: myEvents,
+        myEvents: myOrders,
         initializeCart: initializeCartHandler,
         addItem: addItemHandler,
         removeItem: removeItemHandler,
-        updateMyEvents: updateEvents,
+        updatemyOrders: updateEvents,
       }}
     >
       {props.children}

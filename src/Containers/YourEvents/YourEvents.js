@@ -26,8 +26,8 @@ const YourEvents = (props) => {
                   <img src={ci.bannerImg} alt={ci.altName} width="100px" />
                 </div> */}
                 <div className="product-details">
-                  <div className="product-title">{ci.title}</div>
-                  <p className="product-description">{ci.altName}</p>
+                  <div className="product-title">{ci.eventId.title}</div>
+                  <p className="product-description">{ci.eventId.altName}</p>
                 </div>
               </div>
             ))}

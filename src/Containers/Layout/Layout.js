@@ -76,31 +76,31 @@ const Layout = (props) => {
 
   useEffect(() => {
     if (auth.user && !cart.cart) cart.initializeCart(auth.user);
-  }, [auth.user, cart]);
+  }, [auth, cart]);
 
   useEffect(() => {
     if (auth.user && !auth.userData) {
       axios
-        .get(`/userData/${auth.user.uid}/profileData.json`)
+        .get(`/user/${auth.user.uid}/`)
         .then((res) => {
+          console.log(res.data);
           if (res.data) {
-            for (let i in res.data) {
-              auth.initData({
-                profileId: i,
-                fathersName: res.data[i].fathersName,
-                mothersName: res.data[i].mothersName,
-                rollNumber: res.data[i].rollNumber,
-                branch: res.data[i].branch,
-                year: res.data[i].year,
-              });
-            }
+            auth.initData(res.data);
           } else {
-            history.push("/profile");
+            const userData = {
+              uid: auth.user.uid,
+              displayName: auth.user.displayName,
+              photoURL: auth.user.photoURL,
+              email: auth.user.email,
+              emailVerified: auth.user.emailVerified,
+            };
+            axios.post(`/user/${auth.user.uid}`, userData);
+            auth.initData(userData);
           }
         })
         .catch((err) => console.log(err));
     }
-  }, [auth, history]);
+  }, [auth]);
 
   useEffect(() => {
     if (!events.events) events.initializeEvents();

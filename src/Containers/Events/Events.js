@@ -31,9 +31,9 @@ const Event = (props) => {
                 key={i}
                 name={e.title}
                 altName={e.altName}
-                imgSrc={e.bannerImg}
+                imgSrc={e.imageUrl}
                 imgDesc={e.altName}
-                desc={e.para1}
+                desc={e.description}
                 event={e.eventId}
               ></Card>
             )
@@ -55,7 +55,7 @@ const Event = (props) => {
                 altName={e.altName}
                 imgSrc={e.bannerImg}
                 imgDesc={e.altName}
-                desc={e.para1}
+                desc={e.description}
                 event={e.eventId}
               ></Card>
             )
@@ -76,7 +76,7 @@ const Event = (props) => {
                 altName={e.altName}
                 imgSrc={e.bannerImg}
                 imgDesc={e.altName}
-                desc={e.para1}
+                desc={e.description}
                 event={e.eventId}
               ></Card>
             )
@@ -97,7 +97,7 @@ const Event = (props) => {
                 altName={e.altName}
                 imgSrc={e.bannerImg}
                 imgDesc={e.altName}
-                desc={e.para1}
+                desc={e.description}
                 event={e.eventId}
               ></Card>
             )
@@ -118,7 +118,7 @@ const Event = (props) => {
                 altName={e.altName}
                 imgSrc={e.bannerImg}
                 imgDesc={e.altName}
-                desc={e.para1}
+                desc={e.description}
                 event={e.eventId}
               ></Card>
             )

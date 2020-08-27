@@ -22,13 +22,27 @@ const Event = (props) => {
     if (events.events) {
       setEventData(events.events.find((e) => e.eventId === eventId));
     }
-    setIsInCart(
-      cart.cart ? cart.cart.find((e) => e.eventId === eventId) : false
-    );
     setIsRegistered(
-      cart.myEvents ? cart.myEvents.find((e) => e.eventId === eventId) : false
+      cart.myEvents
+        ? cart.myEvents.find((e) => e.eventId.eventId === eventId)
+        : false
     );
   }, [eventId, cart.cart, cart.myEvents, events.events]);
+
+  useEffect(() => {
+    if (eventData) {
+      setIsInCart(
+        cart.cart
+          ? cart.cart.find((e) => {
+              if (!e.eventId) {
+                return false;
+              }
+              return e.eventId._id === eventData._id;
+            })
+          : false
+      );
+    }
+  }, [eventData, cart.cart]);
 
   return eventData ? (
     <>
@@ -36,7 +50,7 @@ const Event = (props) => {
         <section
           className="column left banner"
           style={{
-            background: `url(${eventData.bannerImg})`,
+            background: `url(${eventData.imageUrl})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
@@ -48,7 +62,7 @@ const Event = (props) => {
           <article className="content">
             <h1>{eventData.title}</h1>
 
-            {eventData.para1.split("\n").map((para, i) => (
+            {eventData.description.split("\n").map((para, i) => (
               <p key={i}>{para}</p>
             ))}
 
@@ -111,7 +125,10 @@ const Event = (props) => {
             !isInCart ? (
               <button
                 className="button primary"
-                onClick={() => cart.addItem(auth.user, eventData)}
+                onClick={() => {
+                  cart.addItem(eventData);
+                  setIsInCart(true);
+                }}
               >
                 Add To Cart
               </button>

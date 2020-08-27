@@ -140,14 +140,11 @@ const Form = (props) => {
   const [year, setYear] = useState("");
   const [branch, setBranch] = useState("");
 
-  const [editMode, setEditMode] = useState(null);
-
   useEffect(() => {
     if (auth.user.displayName) {
       setName(auth.user.displayName);
     }
     if (auth.userData) {
-      setEditMode(auth.userData.profileId);
       setFathersName(auth.userData.fathersName);
       setMothersName(auth.userData.mothersName);
       setRollNumber(auth.userData.rollNumber);
@@ -180,6 +177,7 @@ const Form = (props) => {
 
     if (!formError) {
       const data = {
+        displayName: name,
         fathersName,
         mothersName,
         rollNumber,
@@ -187,18 +185,9 @@ const Form = (props) => {
         branch,
       };
 
-      if (editMode) {
-        axios.patch(
-          `/userData/${auth.user.uid}/profileData/${editMode}.json`,
-          data
-        );
-      } else {
-        axios
-          .post(`/userData/${auth.user.uid}/profileData.json`, data)
-          .then((res) => setEditMode(res.data.name));
-      }
+      axios.post(`user/${auth.user.uid}`, data);
       updateProfile(name);
-      auth.initData({ ...data, profileId: editMode });
+      auth.initData({ ...data });
       history.push("/");
     }
   };

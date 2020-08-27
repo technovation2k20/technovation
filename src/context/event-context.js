@@ -12,7 +12,7 @@ const EventContextProvider = (props) => {
 
   const initializeHandler = () => {
     axios
-      .get("/eventData.json")
+      .get("/events")
       .then((res) => {
         setEvents(res.data);
       })

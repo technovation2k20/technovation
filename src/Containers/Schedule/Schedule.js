@@ -7,7 +7,7 @@ const Schedule = () => {
 
   useEffect(() => {
     async function loadData() {
-      const res = await axios.get("/schedule.json");
+      const res = await axios.get("schedule");
       setData(res.data);
     }
     loadData();
