@@ -2,9 +2,9 @@ import React from "react";
 
 const PrivacyPolicy = () => {
   return (
-    <div style={{ height: "90%", overflowY: "auto", marginTop: "5vh" }}>
+    <div style={{ height: "90%", overflowY: "auto", marginTop: "5vh" ,color: "white",background:black,font-family:timesroman}}>
       <h2 style={{ textAlign: "center" }}>
-        <b>PRIVACY POLICY</b>
+        <strong>PRIVACY POLICY</strong>
       </h2>
       <p>Effective date: 2020-08-15</p>
       <p>
@@ -267,7 +267,7 @@ const PrivacyPolicy = () => {
         8. <b>Disclosure of Data</b>
       </p>
       <p>
-        We may disclose personal information that we collect, or you provide:
+       <i> We may disclose personal information that we collect, or you provide:</i>
       </p>
       <p>
         0.1. <b>Disclosure for Law Enforcement.</b>
