@@ -74,7 +74,7 @@ const Cart = (props) => {
           Register
         </Button>
       )}
-      )}
+      
     </>
   );
 };
