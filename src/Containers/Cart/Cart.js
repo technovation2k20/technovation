@@ -53,16 +53,7 @@ const Cart = (props) => {
         )}
       </div>
 
-     {cart.cart && cart.cart.length ? (
-        <Button
-          variant="contained"
-          size="large"
-          className="checkout"
-          onClick={onSubmitHandler}
-        >
-          Register
-        </Button>
-      ) : (
+    
        {cart.cart && cart.cart.length ? (
         <Button
           variant="contained"
