@@ -63,6 +63,16 @@ const Cart = (props) => {
           Register
         </Button>
       ) : (
+       {cart.cart && cart.cart.length ? (
+        <Button
+          variant="contained"
+          size="large"
+          className="checkout"
+          onClick={onSubmitHandler}
+        >
+          Register
+        </Button>
+      ) : (
         <Button
           variant="contained"
           size="large"
@@ -72,6 +82,7 @@ const Cart = (props) => {
         >
           Register
         </Button>
+      )}
       )}
     </>
   );
